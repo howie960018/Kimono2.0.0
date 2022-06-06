@@ -6,8 +6,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Navigation from './src/navigation/index';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NativeBaseProvider } from 'native-base';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './src/redux/store';
+import AuthContextProvider from './store/auth-context';
+import Root from './src/navigation/index';
+import StripeApp from "./src/StripeApp";
+import { StripeProvider } from "@stripe/stripe-react-native";
 
 
 function App() {
@@ -15,8 +19,10 @@ function App() {
     <SafeAreaProvider>
       <NativeBaseProvider>
         <Provider store={store}>
-          <Navigation />
-          </Provider>
+          <AuthContextProvider>
+            <Root />
+          </AuthContextProvider>
+        </Provider>
       </NativeBaseProvider>
     </SafeAreaProvider>
   );

@@ -1,46 +1,56 @@
 import * as React from 'react';
 import { View, Text, Button, StyleSheet, StatusBar, SafeAreaView } from 'react-native';
-import { Box,Image,TouchableOpacity ,Center} from 'native-base';
+import { Box, Image, TouchableOpacity, Center, Pressable } from 'native-base';
 
-export default function Welcome({navigation}){
+export default function Welcome({ navigation }) {
 
     return (
-        <SafeAreaView>
-            <Box margin={20}>
-                <Center>
-                <Image margin='60' alt='ds' style={styles.foxstyle} source={{ uri: 'https://github.com/howie960018/rentakimono/blob/master/assets/images/foxumbrella.png?raw=true' }}/>
-           <Text  style={{ fontSize: 23,fontWeight:'bold' } } marginTop={3}  _dark={{ color: "#fff" }}
-            _light={{ color: "black" }} >歡迎</Text>
-                <Text margin={2} style={{ fontSize: 16 }} marginTop={3}>請挑選您有興趣的和服吧!</Text>
-                </Center>
-            </Box>
-           
 
-             
-            <Button
-            
-                onPress={() => navigation.navigate('Gender')}
-                title="和服"
-                accessibilityLabel="Learn more about this purple button"
-                color="#f194ff"
-                borderRadius={22}
-                width={200}
-            ></Button>
-
-            <Button
-            margin={32}
-                onPress={() => {}}
-                title="配件"
-                color="#f194ff"
-                accessibilityLabel="Learn more about this purple button"
-            />
+        <Box backgroundColor={"#E0FDFF"} flex='1'>
+            <Center>
+                <Image margin='30' alt='ds' style={styles.foxstyle} source={{ uri: 'https://github.com/howie960018/rentakimono/blob/master/assets/images/foxumbrella.png?raw=true' }} />
+                <Text style={{ fontSize: 23, fontWeight: 'bold' }} marginTop={3} _dark={{ color: "#fff" }}
+                    _light={{ color: "black" }} >歡迎</Text>
+                <View marginTop={10}>
+                    <Text style={{ fontSize: 16 }}>請挑選您有興趣的和服吧!</Text>
+                </View>
 
 
+                <Pressable
+                    marginTop={30}
+                    onPress={() => navigation.navigate('Gender')}
+                    color="#fff"
 
-            
-        </SafeAreaView>
+                >
+                    <Image
+
+
+                        source={{ uri: 'https:github.com/howie960018/rentakimono/blob/master/assets/images/enterkimono.png?raw=true' }}
+                        alt="product"
+                        style={styles.kimstyle}
+                    />
+                </Pressable>
+
+                <Pressable
+                    marginTop={6}
+                    onPress={() => navigation.navigate('others')}
+                    color="#fff"
+
+                >
+                    <Image
+                        source={{ uri: 'https:github.com/howie960018/rentakimono/blob/master/assets/images/accessories.png?raw=true' }}
+                        alt="product"
+                        style={styles.kimstyle}
+
+                    />
+                </Pressable>
+            </Center>
+        </Box>
+
+
+
     );
- 
+
 }
 
 
@@ -89,7 +99,13 @@ const styles = StyleSheet.create({
     foxstyle: {
         width: 120,
         height: 150,
-        marginBottom: 20
-    }
+        marginBottom: 10
+    },
+    kimstyle: {
+        width: 350,
+        height: 115,
+        borderRadius: 5,
+        marginTop: 10
+    },
 
 });
