@@ -52,7 +52,7 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
         </Center>
       
         <Input
-          label="Email"
+          label="帳號"
           onUpdateValue={updateInputValueHandler.bind(this, 'email')}
           value={enteredEmail}
           keyboardType="email-address"
@@ -99,6 +99,9 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
 export default AuthForm;
 
 const styles = StyleSheet.create({
+  whtext:{
+    color:"white"
+  },
   buttons: {
     marginTop: 12,
   },

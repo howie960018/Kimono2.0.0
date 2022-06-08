@@ -13,10 +13,13 @@ function Start({ navigation }) {
                 color="#f194ff"
                 accessibilityLabel="Learn more about this purple button"
             /> */}
-            <Box style={styles.container} _dark={{ bg: "#6C6C6C" }}
+            <Box style={styles.container}
+                 _dark={{ bg: "#6C6C6C" }}
                 _light={{ bg: "#E0FDFF" }}>
                 <Image style={styles.imagestyle} source={require('../../assets/foxlogo.png')} alt='rg' />
-                <Box><Text style={styles.text} >以簡單的步驟來租借和服吧!</Text></Box>
+                <Box>   
+                    <Text style={styles.text} >以簡單的步驟來租借和服吧!</Text>
+                </Box>
 
                 <TouchableOpacity style={styles.start} onPress={() => navigation.navigate('Welcome')}>
                     <Text style={styles.buttontxt}>開始</Text>

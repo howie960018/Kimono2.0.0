@@ -51,11 +51,18 @@ export default function PickDate({ navigation, route }) {
     };
 
     return (
-        <Box backgroundColor={'#E0FDFF'} flex='1'>
 
-            <Center>
-                <Text margin={7} fontSize={26}>選擇租借  {route.params.title} 的日期</Text>
-            </Center>
+        <Box  flex={1}
+        _dark={{ bg: "#6C6C6C" }}
+        _light={{ bg: "#E0FDFF" }}>
+            
+            {/* 選擇日期 */}
+            <Box marginTop={8} marginLeft={8} style={styles.parctrl}>
+                <Text  fontSize={22}>選擇租借</Text>
+                <Text bold fontSize={22}>{route.params.title}</Text>
+                <Text fontSize={22}>的日期和時間</Text>
+            </Box>
+            
 
             <View style={styles.MainContainer}>
 
@@ -87,23 +94,21 @@ export default function PickDate({ navigation, route }) {
                
 
                 {!datePicker && (
-                    <View style={{ margin: 10 }}>
-                        <Pressable borderRadius={20}
-                    backgroundColor={"#FFAAAA"}  justifyContent={'center'} alignItems={"center"}  onPress={showDatePicker}>
-                            <Text fontSize={24}>選擇日期</Text>
+                    <View marginTop={60} >
+                        <Pressable style={styles.datebtn}  borderRadius={20} backgroundColor={"#34CEC5"} marginLeft={40} justifyContent={'center'} alignItems={"center"}  onPress={showDatePicker}>
+                            <Text fontSize={24} color={'white'}>選擇日期</Text>
                         </Pressable>
-                        <Text style={styles.text}>Date = {date.toDateString()}</Text>
+                        <Text color={"#34CEC5"} style={styles.text}>Date = {date.toDateString()}</Text>
 
                     </View>
                 )}
 
                 {!timePicker && (
-                    <View style={{ margin: 10 }}>
-                         <Pressable borderRadius={20}
-                    backgroundColor={"#FFAAAA"}  justifyContent={'center'} alignItems={"center"}  onPress={showTimePicker}  >
-                            <Text fontSize={24}>選擇時間</Text>
+                    <View style={{ marginTop:10 }}>
+                        <Pressable style={styles.datebtn} borderRadius={20} backgroundColor={"#8CC3F6"}  justifyContent={'center'} alignItems={"center"}  onPress={showTimePicker}  >
+                            <Text fontSize={24} color={'white'}>選擇時間</Text>
                         </Pressable>
-                        <Text style={styles.text}>Time = {time.toLocaleTimeString('en-US')}</Text>
+                        <Text color={"#8CC3F6"} style={styles.text}>Time = {time.toLocaleTimeString('en-US')}</Text>
                     </View>
                     
                 )}
@@ -114,12 +119,12 @@ export default function PickDate({ navigation, route }) {
 
 
                 <Pressable
+                    style={styles.confirm}
                     onPress={() => navigation.navigate('Payment', route.params)}
-                   borderRadius={20}
+                    borderRadius={30}
                     backgroundColor={"#FFAAAA"}
-                    width={120}
                     justifyContent={'center'} alignItems={"center"}
-                ><Text fontSize={20}>確認</Text></Pressable>
+                ><Text color={"white"} fontSize={22}>確認</Text></Pressable>
 
 
             </View>
@@ -132,7 +137,19 @@ export default function PickDate({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
+    },
+    confirm:{
+        marginTop:20,
+        width:200,
+        height:50
+    },
+    parctrl:{
+        display:"flex",
+        flexDirection:"row"
+    },
+    datebtn:{
+        width:180,
+        height:45
     },
     input: {
         height: 40,
@@ -155,20 +172,10 @@ const styles = StyleSheet.create({
 
     text: {
         fontSize: 25,
-        color: 'black',
         padding: 3,
         marginBottom: 50,
         marginTop: 30,
         textAlign: 'center'
-    },
-
-
-    datePicker: {
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        width: 320,
-        height: 260,
-        display: 'flex',
-    },
+    }, 
 
 });

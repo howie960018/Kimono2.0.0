@@ -43,7 +43,7 @@ function AuthStack() {
         contentStyle: { backgroundColor: "E0FDFF" },
       }}
     >
-      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="帳號登入" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
     </Stack.Navigator>
   );
@@ -55,11 +55,11 @@ function AuthenticatedStack() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: "#FFAAAA" },
-        headerTintColor: 'black',
+        headerTintColor: 'white',
         contentStyle: { backgroundColor: "E0FDFF" },
       }}
     >
-      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+      <Stack.Screen name="歡迎" component={WelcomeScreen} />
       <Stack.Screen name="Welcome" component={Welcome}
         options={{
           headerRight: ({ tintColor }) => (
@@ -108,14 +108,14 @@ function MyTab() {
   return (
 
     <Tab.Navigator
-      initialRouteName='Homee'
+      initialRouteName='Home'
       screenOptions={({ route }) => ({
         tabBarActiveTintColor: colorMode == 'light' ? '#F88C8C' : '#FFF',
         tabBarInactiveTintColor: colorMode == 'light' ? 'gray' : '#979797',
         tabBarStyle: { backgroundColor: colorMode == 'light' ? 'white' : '#575757' },
         tabBarIcon: ({ color, focused }) => {
           let iconName
-          if (route.name == 'Homee') {
+          if (route.name == 'Home') {
             iconName = focused ? 'ios-home' : 'home-outline'
             return <Ionicons name={iconName} size={25} color={color} />
           } else if (route.name == 'Cart') {
@@ -134,7 +134,7 @@ function MyTab() {
     >
       <Tab.Screen
         options={{ headerShown: false }}
-        name="Homee" component={AuthenticatedStack} />
+        name="Home" component={AuthenticatedStack} />
       <Tab.Screen name="Cart" component={Cart}
         options={{
           headerStyle: {
@@ -173,7 +173,7 @@ function SettingStack({ navigation }) {
           },
 
 
-        }} name='SettingScreen' component={SettingsScreen} />
+        }} name='設定' component={SettingsScreen} />
       <Stack.Screen
 
         options={{

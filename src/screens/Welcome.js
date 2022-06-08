@@ -1,30 +1,40 @@
 import * as React from 'react';
 import { View, Text, Button, StyleSheet, StatusBar, SafeAreaView } from 'react-native';
-import { Box, Image, TouchableOpacity, Center, Pressable } from 'native-base';
+import { Box, Image, TouchableOpacity, Center, Pressable,useColorMode,HStack } from 'native-base';
+import LottieView from "lottie-react-native";
 
 export default function Welcome({ navigation }) {
-
+    const {colormode}=useColorMode();
     return (
-
-        <Box backgroundColor={"#E0FDFF"} flex='1'>
-            <Center>
-                <Image margin='30' alt='ds' style={styles.foxstyle} source={{ uri: 'https://github.com/howie960018/rentakimono/blob/master/assets/images/foxumbrella.png?raw=true' }} />
-                <Text style={{ fontSize: 23, fontWeight: 'bold' }} marginTop={3} _dark={{ color: "#fff" }}
-                    _light={{ color: "black" }} >歡迎</Text>
+        <Box style={styles.container} _dark={{ bg: "#6C6C6C" }} _light={{ bg: "#E0FDFF" }}>
+                {/* <Image margin='30' alt='ds' style={styles.foxstyle} source={{ uri: 'https://github.com/howie960018/rentakimono/blob/master/assets/images/foxumbrella.png?raw=true' }} /> */}
+                {/* 狐狸撐傘動畫 */}
+                <Box marginTop={3}  h={180} w={180}>
+                    <LottieView
+                        source={require("../lottie/kasa.json")}
+                        autoPlay
+                    />
+                </Box>
+                <Box>
+                    <Text style={styles.textitle}>歡迎</Text>
+                </Box>
+                {/* <Text style={{ fontSize: 23, fontWeight: 'bold' }} marginTop={3} _dark={{ color: "#fff" }}
+                    _light={{ color: "black" }} >歡迎</Text> */}
                 <View marginTop={10}>
-                    <Text style={{ fontSize: 16 }}>請挑選您有興趣的和服吧!</Text>
+                    <HStack>
+                        <Text _dark={{ color: "blueGray.900", }}
+                _light={{ color: "blueGray.50" }}  style={{ fontSize: 16 }}>請挑選您有興趣的和服吧!</Text>
+                    </HStack>    
                 </View>
 
 
                 <Pressable
-                    marginTop={30}
+                    marginTop={18}
                     onPress={() => navigation.navigate('Gender')}
                     color="#fff"
 
                 >
                     <Image
-
-
                         source={{ uri: 'https:github.com/howie960018/rentakimono/blob/master/assets/images/enterkimono.png?raw=true' }}
                         alt="product"
                         style={styles.kimstyle}
@@ -32,19 +42,17 @@ export default function Welcome({ navigation }) {
                 </Pressable>
 
                 <Pressable
-                    marginTop={6}
+                    marginTop={3}
                     onPress={() => navigation.navigate('others')}
                     color="#fff"
 
                 >
-                    <Image
-                        source={{ uri: 'https:github.com/howie960018/rentakimono/blob/master/assets/images/accessories.png?raw=true' }}
-                        alt="product"
-                        style={styles.kimstyle}
-
-                    />
+                <Image
+                    source={{ uri: 'https:github.com/howie960018/rentakimono/blob/master/assets/images/accessories.png?raw=true' }}
+                    alt="product"
+                    style={styles.kimstyle}
+                />
                 </Pressable>
-            </Center>
         </Box>
 
 
@@ -58,7 +66,7 @@ export default function Welcome({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -67,6 +75,11 @@ const styles = StyleSheet.create({
         height: 201,
         marginTop: 129,
         marginBottom: 40,
+    },
+    textitle:{
+        fontSize: 23, 
+        fontWeight: 'bold',
+        marginTop:3
     },
     kimstyle: {
         width: 310,

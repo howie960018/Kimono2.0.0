@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { ScrollView, View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import { Box, Center, NativeBaseProvider, useColorMode, Button, Actionsheet, useDisclose, Icon } from "native-base";
+import { Box, Center, NativeBaseProvider, useColorMode, Button, Actionsheet, useDisclose, Icon ,HStack} from "native-base";
 
 import kimdata from '../data/kimono.json';
 import ProductList from "../components/ProductList";
@@ -41,7 +41,9 @@ const Gender = ({ navigation }) => {
     return (
         <NativeBaseProvider>
 
-            <Box backgroundColor={'#E0FDFF'} flex='1'>
+            <Box flex={1}
+                _dark={{ bg: "#6C6C6C" }}
+                _light={{ bg: "#E0FDFF" }}>
                 <SegmentedControlTab
                     values={["男", "女"]}
                     tabStyle={{

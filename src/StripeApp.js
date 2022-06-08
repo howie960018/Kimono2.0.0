@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import Welcome from "./screens/Welcome";
-import { Center, Text ,Pressable} from "native-base";
+import { Center, Text ,Pressable, Box} from "native-base";
 //ADD localhost address of your server
 const API_URL = "http://localhost:3000";
 
@@ -12,8 +12,13 @@ const StripeApp = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Box _dark={{ bg: "#6C6C6C" }}
+        _light={{ bg: "#E0FDFF" }}
+        paddingTop={8}
+        paddingBottom={20}
+        >
       <Center>
-        <Text fontSize={20} marginTop={-100}>請留下您的資料 </Text>
+        <Text bold fontSize={22}>請留下您的資料 </Text>
       </Center>
 
       <TextInput
@@ -41,7 +46,11 @@ const StripeApp = ({ navigation }) => {
           setCardDetails(cardDetails);
         }}
       />
-      <Button onPress={() => { alert("Payment Successful") }} title="送出" />
+      <Center>
+        <Box style={styles.btncrl}>
+          <Button onPress={() => { alert("Payment Successful") }} title="送出" />
+        </Box>
+      </Center>
      
 <Center>
 <Pressable
@@ -50,24 +59,29 @@ marginTop={10}
 onPress={() => { navigation.navigate('Welcome') }}
 justifyContent={'center'} alignItems={"center"}
 backgroundColor="#FFAAAA"
-borderRadius={12}
-width={80}
-height={60}
-><Text fontSize={18} color={'#fff'}>回首頁</Text></Pressable>
+borderRadius={30}
+width={200}
+height={50}
+><Text fontSize={22} color={'#fff'}>回首頁</Text></Pressable>
 </Center>
     
 
-
+</Box>
     </View>
   );
 };
 export default StripeApp;
 
 const styles = StyleSheet.create({
+  btncrl:{
+    width:368,
+    height:50,
+    marginTop:10
+  },
   container: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
-    backgroundColor: "#E0FDFF"
+   
 
 
   },

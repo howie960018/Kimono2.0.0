@@ -1,13 +1,21 @@
 import React from 'react';
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
-import { Box, Text } from 'native-base';
+import { Box, Text,useColorMode } from 'native-base';
+import LottieView from "lottie-react-native";
 
 
 export default function WelcomeScreen({ navigation }) {
     return (
-        <Box style={styles.container} _dark={{ bg: "#6C6C6C" }}
+        <Box style={styles.container} _dark={{ bg: "#6C6C6C" }} 
             _light={{ bg: "#E0FDFF" }}>
-            <Image style={styles.imagestyle} source={require('../../assets/foxlogo.png')} />
+            {/* 狐狸端坐動畫 */}
+            <Box h={330} w={330}>
+                <LottieView
+                    source={require("../lottie/sitfox.json")}
+                    autoPlay
+                />
+            </Box>
+            {/* <Image style={styles.imagestyle} source={require('../../assets/foxlogo.png')} /> */}
             <Box><Text style={styles.text} >以簡單的步驟來租借和服吧!</Text></Box>
 
             <TouchableOpacity style={styles.start} onPress={() => navigation.navigate('Welcome')}>
@@ -47,24 +55,23 @@ const styles = StyleSheet.create({
     },
 
     text: {
-
-        fontSize: 18,
+        fontSize: 16,
         marginBottom: 39,
     },
     buttontxt: {
         color: '#fff',
-        fontSize: 20,
-        color: "#fff",
-        marginLeft: 140,
-        marginTop: 10
+        fontSize: 20
+        // marginLeft:30,
+        // marginTop: 15
     },
     start: {
-        fontSize: 16,
-        width: 311,
+        // fontSize: 16,
+        width: 180,
         height: 47,
         backgroundColor: '#FFAAAA',
-        borderRadius: 30
-
+        borderRadius: 30,
+        alignItems:"center",
+        justifyContent:"center"
     },
     foxstyle: {
         width: 112,

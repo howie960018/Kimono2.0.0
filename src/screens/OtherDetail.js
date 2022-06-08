@@ -55,25 +55,48 @@ const KimDetail = ({ navigation, route }) => {
          </HStack>
 
         </Box>
-        <Box _dark={{ bg: "#6C6C6C", borderColor: 'blueGray.500', borderWidth: 0.6 }}
-          _light={{ bg: "#E0FDFF" }} justifyContent={'center'} alignItems={'center'}>
+        <Box  _dark={{ bg: "#6C6C6C", borderColor: 'blueGray.500', borderWidth: 0.6 }}
+          _light={{ bg: "#E0FDFF" }} paddingTop={10} paddingBottom={5} justifyContent={'center'} alignItems={'center'}>
 
-          <Text marginTop={10} marginLeft={25} >
+          {/* <Text marginTop={10} marginLeft={25} >
             <Text bold fontSize={16} marginTop={5} >產品說明 </Text>
-          </Text>
-          <Box marginRight={4} >
-            <Text marginTop={10} marginLeft={25} fontSize={16} >
+          </Text> */}
+
+          {/* 產品說明 */}
+          <Box style={styles.pushtop}>
+            <Text style={styles.protext} >產品說明 </Text>
+          </Box>
+
+          {/* 說明文字 */}
+          <Box style={styles.des} >
+            <Text marginTop={8}  fontSize={18} >
               {description}
             </Text>
           </Box>
-          <Text marginTop={10} marginLeft={26} fontSize={26} >
-            {component1}{'                  '}{c1price}x{otherValue}
-          </Text>
+          
+          <Box style={styles.pri}>
+            {/* component1*/}
+            <Box style={styles.priceline}>
+              <Text marginTop={8} fontSize={26} >
+                {component1}
+              </Text >
+              <Text marginTop={8} fontSize={26}>
+                {c1price}x{otherValue}
+              </Text>
+            </Box>
+
+            {/* 總價格 */}
+            <Box style={styles.priceline}>
+              <Text bold marginTop={10} fontSize={28} >
+                Total
+              </Text >
+              <Text bold marginTop={10} fontSize={28}>
+                ${' '}{price * otherValue}
+              </Text>
+            </Box>
+
+          </Box>
     
-
-
-
-          <Text marginTop={10} marginLeft={25} bold fontSize={28}>Total:{'  '}${' '}{price}x{otherValue}={price * otherValue}</Text>
           <Box alignItems={'center'} justifyContent={'center'}>
             <TouchableOpacity style={styles.start} onPress={() => { navigation.navigate('PickDate', route.params) }} >
               <Text style={styles.buttontxt} _dark={{ color: "blueGray.900", }}
@@ -97,19 +120,39 @@ const styles = StyleSheet.create({
     height: 423,
 
   },
+  protext:{
+    fontSize:18,
+    fontWeight:"bold"
+  },
+  pushtop:{
+    width:310,
+    marginTop: 10
+  },
+  pri:{
+    width:310,
+  },
+  priceline:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-between"
+  },
+  des:{
+    width:310,
+  },
   counter: {
 
     backgroundColor: "#66B0B5",
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom:30
 
 
   },
 
   start: {
     fontSize: 16,
-    width: 311,
-    height: 47,
+    width: 180,
+    height: 50,
     backgroundColor: '#FFAAAA',
     borderRadius: 30,
     marginTop: 35,

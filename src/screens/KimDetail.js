@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native';
-import { Center, ScrollView, Box, AspectRatio, Text, HStack, VStack,Image, Button, Pressable } from "native-base";
+import { Center, ScrollView, Box, AspectRatio, Text, HStack, VStack,Image, Button, Pressable, Row } from "native-base";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCounter, selectA, selectB, selectC,selectD, selectProductName, selectPrice,increaseOne,decreaseOne } from "../redux/counterSlice";
 
@@ -59,6 +59,11 @@ const KimDetail = ({ navigation, route }) => {
            </Button>
          </HStack>
 
+         <Center>
+            <Text fontSize={20} color={"#fff"}>請挑選尺寸</Text> 
+            <Text fontSize={30} marginLeft={3} color={"#fff"}> {NameOfProduct}</Text>
+          </Center>
+
           <HStack margin={3} space={3}>
             <Button borderRadius={10} width={70} onPress={() => dispatch(selectA(NameOfProduct))}>
               <Text fontSize={30} color="white">S</Text>
@@ -74,45 +79,79 @@ const KimDetail = ({ navigation, route }) => {
             </Button>
           </HStack>
           <VStack alignContent={"center"} justifyContent={'center'}>
-          <Center>
-            <Text fontSize={22} color={"#fff"}>請挑選尺寸</Text>
-            
-            <Text fontSize={30} marginLeft={3} color={"#fff"}> {NameOfProduct}</Text>
-           
-           
-            </Center>
+          
           </VStack>
           
 
         </Box>
         <Box _dark={{ bg: "#6C6C6C", borderColor: 'blueGray.500', borderWidth: 0.6 }}
-          _light={{ bg: "#E0FDFF" }} justifyContent={'center'} alignItems={'center'}>
+          _light={{ bg: "#E0FDFF" }} paddingTop={10} paddingBottom={5} justifyContent={'center'} alignItems={'center'}>
+          
+          {/* 產品說明 */}
+          <Box style={styles.pushtop}>
+            <Text style={styles.protext} >產品說明 </Text>
+          </Box>
 
-          <Text marginTop={10} marginLeft={25} >
-            <Text bold fontSize={16} marginTop={5} >產品說明 </Text>
-          </Text>
-          <Box marginRight={4} >
-            <Text marginTop={10} marginLeft={25} fontSize={16} >
+          {/* 說明文字 */}
+          <Box style={styles.des} >
+            <Text marginTop={8}  fontSize={18} >
               {description}
             </Text>
           </Box>
-          <Text marginTop={10} marginLeft={26} fontSize={26} >
-            {component1}{'                  '}{c1price}x{counterValue}
-          </Text>
-          <Text marginTop={10} marginLeft={25} fontSize={26}>
-            {component2}{'                 '}{c2price}x{counterValue}
-          </Text>
-          <Text marginTop={10} marginLeft={25} fontSize={26}>
-            {component3}{'                 '}{c3price}x{counterValue}
-          </Text>
+
+          {/* 價格 */}
+          <Box style={styles.pri}>
+
+            {/* component1*/}
+            <Box style={styles.priceline}>
+              <Text marginTop={8} fontSize={26} >
+                {component1}
+              </Text >
+              <Text marginTop={8} fontSize={26}>
+                {c1price}x{counterValue}
+              </Text>
+            </Box>
+
+            {/* component2 */}
+            <Box style={styles.priceline}>
+              <Text marginTop={8} fontSize={26} >
+                {component2}
+              </Text >
+              <Text marginTop={8} fontSize={26}>
+                {c2price}x{counterValue}
+              </Text>
+            </Box>
+
+            {/* component3 */}
+            <Box style={styles.priceline}>
+              <Text marginTop={8} fontSize={26} >
+                {component3}
+              </Text >
+              <Text marginTop={8} fontSize={26}>
+                {c3price}x{counterValue}
+              </Text>
+            </Box>
+
+            {/* 總價格 */}
+            <Box style={styles.priceline}>
+              <Text bold marginTop={10} fontSize={28} >
+                Total
+              </Text >
+              <Text bold marginTop={10} fontSize={28}>
+                ${' '}{price * counterValue}
+              </Text>
+            </Box>
+
+          </Box>
 
 
-
-          <Text marginTop={10} marginLeft={25} bold fontSize={28}>Total:{'  '}${' '}{price}x{counterValue}={price * counterValue}</Text>
+          {/* <Text marginTop={10}  bold fontSize={28}>Total:{'  '}${' '}{price}x{counterValue}={price * counterValue}</Text> */}
           <Box alignItems={'center'} justifyContent={'center'}>
             <TouchableOpacity style={styles.start} onPress={() => { navigation.navigate('PickDate', route.params) }} >
+              <Box style={styles.btntomid}>
               <Text style={styles.buttontxt} _dark={{ color: "blueGray.900", }}
                 _light={{ color: "blueGray.50" }} >下一步</Text>
+              </Box>
             </TouchableOpacity>
           </Box>
 
@@ -127,23 +166,44 @@ export default KimDetail;
 
 const styles = StyleSheet.create({
   img: {
-
     width: 390,
     height: 423,
-
+  },
+  pri:{
+    width:310,
+  },
+  pricefz:{
+    marginTop:10,
+    fontSize:26
+  },
+  priceline:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-between"
+  },
+  protext:{
+    fontSize:18,
+    fontWeight:"bold"
+  },
+  des:{
+    width:310,
+  },
+  btntomid:{
+    display:"flex",
+    alignItems:"center"
   },
   counter: {
-
     backgroundColor: "#66B0B5",
     justifyContent: 'center',
     alignItems: 'center'
-
-
   },
-
+  pushtop:{
+    width:310,
+    marginTop: 10
+  },
   start: {
     fontSize: 16,
-    width: 311,
+    width: 180,
     height: 47,
     backgroundColor: '#FFAAAA',
     borderRadius: 30,
@@ -153,9 +213,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttontxt: {
-
-    fontSize: 16
-
+    fontSize: 20
   },
 
 })

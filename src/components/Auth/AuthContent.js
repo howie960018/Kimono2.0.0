@@ -57,7 +57,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
     <Box backgroundColor={'#E0FDFF'} flex={1}>
     <View style={styles.authContent}>
       <Center>
-      <Text fontSize={24} >Kimono</Text>
+      <Text style={styles.wtext} fontSize={24} >登入</Text>
       </Center>
       
       <AuthForm
@@ -86,6 +86,10 @@ const styles = StyleSheet.create({
     elevation: 2,
     backgroundColor:"#FFAAAA"
     
+  },
+  wtext:{
+    color:"white",
+    fontWeight:"bold"
   },
   buttons: {
     marginTop: 8,
