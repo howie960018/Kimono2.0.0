@@ -2,20 +2,54 @@ import React, { useState } from 'react';
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native';
 import { Center, ScrollView, Box, AspectRatio, Text, HStack, VStack,Image, Button, Pressable, Row } from "native-base";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCounter, selectA, selectB, selectC,selectD, selectProductName, selectPrice,increaseOne,decreaseOne } from "../redux/counterSlice";
+import { selectCounter, selectA, selectB, selectC,selectD, selectProductName, selectPrice,increaseOne,decreaseOne,addToCart } from "../redux/counterSlice";
+import { addFavorite, FavoritesContext, removeFavorite } from '../components/context/FavContext'
+import { useContext,useLayoutEffect } from 'react';
+import IconButton from '../components/ui/IconButton';
 
 const KimDetail = ({ navigation, route }) => {
   
-
 
   const counterValue = useSelector(selectCounter);
   const NameOfProduct = useSelector(selectProductName);
   const Total = useSelector(selectPrice);
 
-  // Define a dispatch to send actions
+  
+  const favoriteMealsCtx=useContext(FavoritesContext) ;
   const dispatch = useDispatch();
 
-  const { title,
+  const mealId = route.params.id;
+  
+
+  const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+
+  function changeFavoriteStatusHandler() {
+    if (mealIsFavorite) {
+      favoriteMealsCtx.removeFavorite(mealId);
+      
+    } else {
+       favoriteMealsCtx.addFavorite(mealId);
+      
+    }
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            icon={mealIsFavorite ? 'star' : 'star-outline'}
+            color="white"
+            size={25}
+            onPress={changeFavoriteStatusHandler}
+          />
+        );
+      },
+    });
+  }, [navigation, changeFavoriteStatusHandler]);
+
+  const { 
+    title,
     artist,
     price,
     bgc,
@@ -28,6 +62,8 @@ const KimDetail = ({ navigation, route }) => {
     c2price,
     c3price
   } = route.params;
+
+  
 
   return (
     <Center
@@ -140,6 +176,7 @@ const KimDetail = ({ navigation, route }) => {
               <Text bold marginTop={10} fontSize={28}>
                 ${' '}{price * counterValue}
               </Text>
+      
             </Box>
 
           </Box>

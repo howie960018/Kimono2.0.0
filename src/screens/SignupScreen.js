@@ -19,15 +19,15 @@ function SignupScreen() {
       authCtx.authenticate(token);
     } catch (error) {
       Alert.alert(
-        'Authentication failed',
-        'Could not create user, please check your input and try again later.'
+        '失敗',
+        '註冊失敗，請檢察您的輸入'
       );
       setIsAuthenticating(false);
     }
   }
 
   if (isAuthenticating) {
-    return <LoadingOverlay message="Creating user..." />;
+    return <LoadingOverlay message="正在註冊用戶..." />;
   }
 
   return <AuthContent onAuthenticate={signupHandler} />;

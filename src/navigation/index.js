@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLoading from 'expo-app-loading';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons ,MaterialIcons} from '@expo/vector-icons';
 import { Box } from 'native-base';
 
 import AccountScreen from '../screens/AccountScreen';
@@ -24,8 +24,11 @@ import StripeApp from '../StripeApp';
 import Others from '../screens/others';
 import OtherDetail from '../screens/OtherDetail'
 import WelcomeScreen from '../screens/WelcomeScreen';
+import ThankScreen from '../screens/ThankScreen';
+import Fav from '../screens/Fav';
 
 import AuthContextProvider, { AuthContext } from '../../store/auth-context';
+import FavoritesContextProvider from '../components/context/FavContext';
 import IconButton from '../components/ui/IconButton';
 
 
@@ -59,7 +62,11 @@ function AuthenticatedStack() {
         contentStyle: { backgroundColor: "E0FDFF" },
       }}
     >
-      <Stack.Screen name="歡迎" component={WelcomeScreen} />
+      <Stack.Screen name="歡迎" component={WelcomeScreen} 
+      options={{
+        title: '歡迎' ,
+      }
+      }/>
       <Stack.Screen name="Welcome" component={Welcome}
         options={{
           headerRight: ({ tintColor }) => (
@@ -70,15 +77,49 @@ function AuthenticatedStack() {
               onPress={authCtx.logout}
             />
           ),
-        }} />
+          title:"",}
+        } />
       <Stack.Screen name="Kimono" component={Kimono} />
-      <Stack.Screen name="Gender" component={Gender} />
-      <Stack.Screen name="Detail" component={KimDetail} />
-      <Stack.Screen name='PickDate' component={PickDate} />
-      <Stack.Screen name="Payment" component={Payment} />
-      <Stack.Screen name='StripeApp' component={StripeApp} />
-      <Stack.Screen name="others" component={Others} />
-      <Stack.Screen name="OtherDetail" component={OtherDetail} />
+      <Stack.Screen name="Gender" component={Gender}
+      options={{
+        title: '' ,
+      }
+      } />
+      <Stack.Screen name="Detail" component={KimDetail}
+      options={{
+        title: '' ,
+      }
+      } />
+      <Stack.Screen name='PickDate' component={PickDate}
+      options={{
+        title: '預約' ,
+      }
+      } />
+      <Stack.Screen name="Payment" component={Payment}
+      options={{
+        title: '確認預約資訊' ,
+      }
+      } />
+      <Stack.Screen name='StripeApp' component={StripeApp}
+      options={{
+        title: '付款資訊' ,
+      }
+      }  />
+      <Stack.Screen name='謝謝' component={ThankScreen}
+      options={{
+        title: '' ,
+      }
+      } />
+      <Stack.Screen name="others" component={Others}
+      options={{
+        title: '' ,
+      }
+      }  />
+      <Stack.Screen name="OtherDetail" component={OtherDetail} 
+      options={{
+        title: '' ,
+      }
+      } />
 
 
 
@@ -92,13 +133,13 @@ function Navigation() {
   const authCtx = useContext(AuthContext);
 
   return (
-
+<FavoritesContextProvider>
     <NavigationContainer >
       {!authCtx.isAuthenticated && <AuthStack />}
       {authCtx.isAuthenticated && <MyTab />}
 
     </NavigationContainer>
-
+    </FavoritesContextProvider>
   );
 }
 
@@ -118,10 +159,10 @@ function MyTab() {
           if (route.name == 'Home') {
             iconName = focused ? 'ios-home' : 'home-outline'
             return <Ionicons name={iconName} size={25} color={color} />
-          } else if (route.name == 'Cart') {
-            iconName = focused ? 'cart' : 'cart-outline'
-            return <Ionicons name={iconName} size={25} color={color} />
-          } else if (route.name == 'Settings') {
+          } else if (route.name == 'favorite') {
+            iconName = focused ? 'favorite' : 'favorite-outline'
+            return <MaterialIcons name={iconName} size={25} color={color} />
+          } else if (route.name == '個人設定') {
             iconName = focused ? 'settings' : 'settings-outline'
             return <Ionicons name={iconName} size={25} color={color} />
           }
@@ -135,32 +176,22 @@ function MyTab() {
       <Tab.Screen
         options={{ headerShown: false }}
         name="Home" component={AuthenticatedStack} />
-      <Tab.Screen name="Cart" component={Cart}
+      <Tab.Screen name="favorite" component={Fav}
         options={{
           headerStyle: {
             backgroundColor: '#FFAAAA'
           },
+          title: '我的最愛' 
 
         }}
       />
-      <Tab.Screen name="Settings" component={SettingStack} options={{ headerShown: false }} />
+      <Tab.Screen name="個人設定" component={SettingStack} options={{ headerShown: false }} />
     </Tab.Navigator>
 
   );
 }
 
-function Cart({ navigation }) {
-  return (
-    <Box style={styles.container}
-      _dark={{ bg: "#6C6C6C" }}
-      _light={{ bg: "#E0FDFF" }}>
-      <View style={styles.cartitle}>
-        <Text style={styles.cartxt}>Your Cart</Text>
-      </View>
-    </Box>
-  );
 
-}
 
 function SettingStack({ navigation }) {
   return (
@@ -171,19 +202,11 @@ function SettingStack({ navigation }) {
           headerStyle: {
             backgroundColor: '#FFAAAA'
           },
+           title: '個人設定' 
 
 
-        }} name='設定' component={SettingsScreen} />
-      <Stack.Screen
-
-        options={{
-          headerStyle: {
-            backgroundColor: '#FFAAAA'
-          },
-
-
-        }} name='AccountScreen' component={AccountScreen} />
-
+        }} name='個人設定' component={SettingsScreen} />
+      
     </Stack.Navigator>
 
   )
@@ -208,9 +231,7 @@ function Root() {
     fetchToken();
   }, []);
 
-  if (isTryingLogin) {
-    return <AppLoading />;
-  }
+ 
 
   return <Navigation />;
 }

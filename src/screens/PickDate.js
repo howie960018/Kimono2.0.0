@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { setSelectedStartDate } from '../redux/counterSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { onDateSelected, onTimeSelected } from '../components/context/DateContext';
-import { useContext } from 'react';
+
 
 
 import {
@@ -16,7 +13,7 @@ import {
     Pressable
 } from 'react-native';
 import { Box, Center, Text, TouchableOpacity } from 'native-base';
-import { selectDate } from "../redux/counterSlice";
+
 
 export default function PickDate({ navigation, route }) {
 
@@ -25,6 +22,12 @@ export default function PickDate({ navigation, route }) {
     const [datePicker, setDatePicker] = useState(false);
 
     const [date, setDate] = useState(new Date());
+
+const minDate= new Date("06/01/2022 9:00 AM");
+const maxDate=new Date("06/30/2022 9:00 PM");
+
+
+
 
     const [timePicker, setTimePicker] = useState(false);
 
@@ -51,24 +54,19 @@ export default function PickDate({ navigation, route }) {
     };
 
     return (
+        <Box backgroundColor={'#E0FDFF'} flex='1'>
 
-        <Box  flex={1}
-        _dark={{ bg: "#6C6C6C" }}
-        _light={{ bg: "#E0FDFF" }}>
-            
-            {/* 選擇日期 */}
-            <Box marginTop={8} marginLeft={8} style={styles.parctrl}>
-                <Text  fontSize={22}>選擇租借</Text>
-                <Text bold fontSize={22}>{route.params.title}</Text>
-                <Text fontSize={22}>的日期和時間</Text>
-            </Box>
-            
+            <Center>
+                <Text margin={7} fontSize={16}>選擇租借  {route.params.title} 的日期</Text>
+            </Center>
 
             <View style={styles.MainContainer}>
 
                 {datePicker && (
                     <DateTimePicker
                         value={date}
+                        minimumTime={minDate}
+                        maximumDate={maxDate}
                         mode={'date'}
                         display={Platform.OS === 'ios' ? 'spinner' : 'default'}
                         is24Hour={true}
@@ -83,6 +81,8 @@ export default function PickDate({ navigation, route }) {
                 {timePicker && (
                     <DateTimePicker
                         value={time}
+                        minimumDate={minDate}
+                        maximumDate={maxDate}
                         mode={'time'}
                         display={Platform.OS === 'ios' ? 'spinner' : 'default'}
                         is24Hour={false}
@@ -94,21 +94,23 @@ export default function PickDate({ navigation, route }) {
                
 
                 {!datePicker && (
-                    <View marginTop={60} >
-                        <Pressable style={styles.datebtn}  borderRadius={20} backgroundColor={"#34CEC5"} marginLeft={40} justifyContent={'center'} alignItems={"center"}  onPress={showDatePicker}>
-                            <Text fontSize={24} color={'white'}>選擇日期</Text>
+                    <View style={{ margin: 10 }}>
+                        <Pressable borderRadius={20}
+                    backgroundColor={"#34CEC5"}  justifyContent={'center'} alignItems={"center"}  onPress={showDatePicker}>
+                            <Text fontSize={18}>選擇日期</Text>
                         </Pressable>
-                        <Text color={"#34CEC5"} style={styles.text}>Date = {date.toDateString()}</Text>
+                        <Text style={styles.text}>Date = {date.toDateString()}</Text>
 
                     </View>
                 )}
 
                 {!timePicker && (
-                    <View style={{ marginTop:10 }}>
-                        <Pressable style={styles.datebtn} borderRadius={20} backgroundColor={"#8CC3F6"}  justifyContent={'center'} alignItems={"center"}  onPress={showTimePicker}  >
-                            <Text fontSize={24} color={'white'}>選擇時間</Text>
+                    <View style={{ margin: 10 }}>
+                         <Pressable borderRadius={20}
+                    backgroundColor={"#8CC3F6"}  justifyContent={'center'} alignItems={"center"}  onPress={showTimePicker}  >
+                            <Text fontSize={18}>選擇時間</Text>
                         </Pressable>
-                        <Text color={"#8CC3F6"} style={styles.text}>Time = {time.toLocaleTimeString('en-US')}</Text>
+                        <Text style={styles.text}>Time = {time.toLocaleTimeString('en-US')}</Text>
                     </View>
                     
                 )}
@@ -119,12 +121,12 @@ export default function PickDate({ navigation, route }) {
 
 
                 <Pressable
-                    style={styles.confirm}
                     onPress={() => navigation.navigate('Payment', route.params)}
-                    borderRadius={30}
+                   borderRadius={20}
                     backgroundColor={"#FFAAAA"}
+                    width={120}
                     justifyContent={'center'} alignItems={"center"}
-                ><Text color={"white"} fontSize={22}>確認</Text></Pressable>
+                ><Text fontSize={20}>確認</Text></Pressable>
 
 
             </View>
@@ -137,19 +139,7 @@ export default function PickDate({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    confirm:{
-        marginTop:20,
-        width:200,
-        height:50
-    },
-    parctrl:{
-        display:"flex",
-        flexDirection:"row"
-    },
-    datebtn:{
-        width:180,
-        height:45
+
     },
     input: {
         height: 40,
@@ -172,10 +162,20 @@ const styles = StyleSheet.create({
 
     text: {
         fontSize: 25,
+        color: 'black',
         padding: 3,
         marginBottom: 50,
         marginTop: 30,
         textAlign: 'center'
-    }, 
+    },
+
+
+    datePicker: {
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        width: 320,
+        height: 260,
+        display: 'flex',
+    },
 
 });

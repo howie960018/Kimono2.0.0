@@ -8,9 +8,10 @@ const OtherList = ({ list, navigation }) => {
   return (
     <Box 
     _dark={{ bg: "#828282" }}
-    _light={{ bg: "#E0FDFF" }}>
+    _light={{ bg: "#E0FDFF" }}
+    height={600}>
     <FlatList
-   
+  
       contentContainerStyle={{flexDirection : "column"}} 
       data={list}
       renderItem={renderItem}

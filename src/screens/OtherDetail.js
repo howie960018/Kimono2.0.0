@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useContext ,useLayoutEffect} from 'react';
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native';
 import { Center, ScrollView, Box, AspectRatio, Text, HStack, Image, Button, c } from "native-base";
 import { useDispatch, useSelector } from "react-redux";
+import { FavoritesContext } from '../components/context/FavContext';
 import { selectOtherCounter,increaseOtherOne,decreaseOtherOne, selectProductName, selectPrice,increaseOne,decreaseOne } from "../redux/counterSlice";
+import IconButton from '../components/ui/IconButton';
 
 const KimDetail = ({ navigation, route }) => {
   
@@ -10,6 +12,40 @@ const KimDetail = ({ navigation, route }) => {
   const NameOfProduct = useSelector(selectProductName);
   const Total = useSelector(selectPrice);
 
+
+   
+  const favoriteMealsCtx=useContext(FavoritesContext) ;
+
+
+  const mealId = route.params.id;
+  
+
+  const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+
+  function changeFavoriteStatusHandler() {
+    if (mealIsFavorite) {
+      favoriteMealsCtx.removeFavorite(mealId);
+      
+    } else {
+       favoriteMealsCtx.addFavorite(mealId);
+      
+    }
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            icon={mealIsFavorite ? 'star' : 'star-outline'}
+            color="white"
+            size={25}
+            onPress={changeFavoriteStatusHandler}
+          />
+        );
+      },
+    });
+  }, [navigation, changeFavoriteStatusHandler]);
   // Define a dispatch to send actions
   const dispatch = useDispatch();
 

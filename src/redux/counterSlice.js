@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // Part1: Define Slice (including reducers and actions)
 const initialState = { 
+  title:[],
   counterValue: 0,
   OtherValue:0,
   ProductName:null,
@@ -62,7 +63,37 @@ const counterSlice = createSlice({
     selectD:(state,action)=>{
       state.ProductName='XL';
       
-    }
+    },
+    addToCart(state, { payload }) {
+      
+      const { title } = payload;
+
+      const find = state.find((item) => item.title === title);
+      
+      if (find) {
+        return state.map((item) =>
+          item.title === title
+            ? {
+                ...item,
+                counterValue: item.counterValue + 1,
+              }
+            : item
+        );
+      } else {
+        state.push({
+          ...payload,
+          counterValue: 1,
+        });
+      }
+    },
+    removeItem: (state, action) => {
+
+      const title = action.payload;
+      return state.filter((item) => item.title !== title);
+    },
+    clear(state) {
+      return [];
+    },
   },
 });
 
@@ -76,7 +107,7 @@ export const selectDate = (state) => state.counter.selectedStartDate;
 
 
 // export actions to global
-export const {increaseOtherOne,decreaseOtherOne, setCounter,setProductName,selectA, selectB,selectC,selectD, increaseOne, decreaseOne,setSelectedStartDate } = counterSlice.actions;
+export const {increaseOtherOne,decreaseOtherOne, setCounter,setProductName,selectA, selectB,selectC,selectD, increaseOne, decreaseOne,setSelectedStartDate,addToCart,removeItem,clear } = counterSlice.actions;
 
 // export reducer to global
 export default counterSlice.reducer;

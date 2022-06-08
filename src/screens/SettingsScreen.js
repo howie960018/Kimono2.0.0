@@ -15,7 +15,7 @@ const SettingsScreen = ({navigation}) => {
          
       >
          
-         <HStack marginLeft={9} marginTop={30}>
+         <HStack marginLeft={9} marginTop={10}>
             <MaterialCommunityIcons  size={22} marginRight={5} name="account"/>
          <Text fontSize="20"  marginLeft={3}>我的帳號</Text>
          </HStack>
@@ -34,7 +34,7 @@ const SettingsScreen = ({navigation}) => {
             </HStack>
          </Center>
 
-         <HStack marginLeft={9} marginTop={30}>
+         <HStack marginLeft={9} marginTop={23}>
          <FontAwesome   size={22} name="paint-brush" marginRight={5}/>
          <Text fontSize="20" marginLeft={3}>色彩主題</Text>
          </HStack>
@@ -66,4 +66,3 @@ const SettingsScreen = ({navigation}) => {
 };
 
 export default SettingsScreen;
-

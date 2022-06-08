@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, HStack, VStack, AspectRatio, Text, Image, Pressable } from "native-base"
+import { Box,Center, HStack, VStack, AspectRatio, Text, Image, Pressable } from "native-base"
 
 const Other = ({ product, navigation }) => {
   return (
-    <Box>
+    <Center>
     <Pressable 
-    width={170} height={240}  marginLeft={3} margin={5}
+    width={150} height={210}  marginLeft={3} margin={5}
     backgroundColor={product.bgc}
     borderRadius={10}
       onPress={() => navigation.navigate('OtherDetail', product)}
@@ -13,14 +13,15 @@ const Other = ({ product, navigation }) => {
     >
       <AspectRatio  ratio={1}   >
         <Image
-          width={170} height={240}  
-        
+          width={150} height={180}  
+        justifyContent={'center'}
+        alignContent={'center'}
           source={{ uri: product.image }}
           alt= "product"
         />            
       </AspectRatio>
     </Pressable>
-    </Box>
+    </Center>
   )};
 
 export default Other;

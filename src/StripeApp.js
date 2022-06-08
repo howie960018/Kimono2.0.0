@@ -47,22 +47,30 @@ const StripeApp = ({ navigation }) => {
         }}
       />
       <Center>
-        <Box style={styles.btncrl}>
-          <Button onPress={() => { alert("Payment Successful") }} title="送出" />
-        </Box>
+      
+        <Pressable
+
+marginTop={10}
+onPress={() => { navigation.navigate('謝謝') }}
+justifyContent={'center'} alignItems={"center"}
+backgroundColor="#FFAAAA"
+borderRadius={30}
+width={200}
+height={50}
+><Text fontSize={22} color={'#fff'}>確認預約</Text></Pressable>
       </Center>
      
 <Center>
 <Pressable
 
 marginTop={10}
-onPress={() => { navigation.navigate('Welcome') }}
+onPress={() => { navigation.pop() }}
 justifyContent={'center'} alignItems={"center"}
-backgroundColor="#FFAAAA"
+backgroundColor="#23a2fc"
 borderRadius={30}
 width={200}
 height={50}
-><Text fontSize={22} color={'#fff'}>回首頁</Text></Pressable>
+><Text fontSize={22} color={'#fff'}>再考慮</Text></Pressable>
 </Center>
     
 

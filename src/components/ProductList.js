@@ -7,7 +7,8 @@ const ProductList = ({ list, navigation }) => {
   return (
     <Box 
     _dark={{ bg: "#828282" }}
-    _light={{ bg: "#E0FDFF" }}>
+    _light={{ bg: "#E0FDFF" }}
+    >
     <FlatList
    
       contentContainerStyle={{flexDirection : "column"}} 

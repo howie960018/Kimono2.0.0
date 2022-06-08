@@ -2,13 +2,14 @@ import { Center, Box, Text, HStack, Image, Button, VStack, ScrollView, usePropsR
 import * as React from "react";
 import { View, StyleSheet, StatusBar, SafeAreaView, Pressable } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
-import { selectCounter, selectA, selectB, selectC, selectProductName, selectPrice, selectDate } from "../redux/counterSlice";
+import { selectCounter, selectA, selectB, selectC, selectProductName, selectPrice, selectDate, selectOtherCounter } from "../redux/counterSlice";
 import StripeApp from "../StripeApp";
 
 function Payment({ navigation, route }) {
 
 
     const counterValue = useSelector(selectCounter);
+    const otherValue=useSelector(selectOtherCounter);
     const NameOfProduct = useSelector(selectProductName);
     const Total = useSelector(selectPrice);
     const PickDate = useSelector(selectDate);
@@ -44,23 +45,24 @@ function Payment({ navigation, route }) {
                     <Box>
 
                         {/* 框框 */}
-                        <HStack space={3}>
+                        <HStack space={1}>
                             <Box 
                                 _dark={{ bg: "#8c8c8c" }}
                                 _light={{ bg: '#ffffff' }} 
-                                borderRadius={20} width={140} height={50} margin={5} padding={2}>
-                                <Text marginLeft={3} fontSize={20}>尺寸 :{" "} {NameOfProduct}</Text>
+                                borderRadius={20} width={140} height={50} margin={4} padding={2}>
+                                <Text marginLeft={1} fontSize={20}>尺寸 :{" "} {NameOfProduct}</Text>
                             </Box>
                             <Box 
                                 _dark={{ bg: "#8c8c8c" }}
                                 _light={{ bg: '#ffffff' }} 
-                                borderRadius={20} width={182} height={50} margin={5} padding={2}>
-                                <Text marginLeft={3} fontSize={20}>總計 :{"  NT$"} {route.params.price * counterValue}</Text>
+                                borderRadius={20} width={182} height={100} margin={4} padding={2}>
+                               
+                                <Text marginLeft={1} fontSize={16}>和服 :{"  NT$"} {route.params.price * counterValue} </Text>
+                                <Text marginLeft={1} fontSize={16}>配件 :{"  NT$"} {route.params.price * otherValue} </Text>
+                                <Text marginLeft={1} fontSize={16} fontWeight={'bold'}>總計 :{"  NT$"} {route.params.price * counterValue+route.params.price * otherValue} </Text>
                             </Box>
-                            {/* <Box backgroundColor={'#ffffff'} borderRadius={20} width={200} margin={5} padding={2} justifyContent={'center'} alignItems={'center'}>
 
-                                <Text fontSize={20} >{route.params.artist} </Text>
-                            </Box> */}
+                           
                           
                         </HStack>
                     </Box>
@@ -74,7 +76,7 @@ function Payment({ navigation, route }) {
                     borderRadius={20} marginLeft={6} marginRight={3} marginTop={4}
                     width={365}>
 
-                        <Text margin='5' fontSize={20}>台北市大安區和平東路二段134號 </Text>
+                        <Text margin='5' fontSize={18}>台北市大安區和平東路二段134號 </Text>
                     </Box>
                     {/* <Box>
                     <Text>付款方式</Text>
