@@ -213,7 +213,7 @@
       {
          "title": "紅櫻和傘",
          "artist": "和傘",
-         "image": "https://github.com/howie960018/Kimono2.0.0/blob/main/assets/kasa1.png?raw=true",
+         "image": "https://github.com/howie960018/Kimono2.0.0/blob/interfacefixed/assets/%E5%82%981.png?raw=true",
          "description": "紅櫻和傘具有櫻花形狀的傘面，適合在櫻花飛舞的春季綻放",
          "bgc":"#C6EAFF",
          "component1": "櫻形和傘",
@@ -223,7 +223,7 @@
       {
          "title": "藍櫻和傘",
          "artist": "和傘",
-         "image": "https://github.com/howie960018/Kimono2.0.0/blob/main/assets/kasa2.png?raw=true",
+         "image": "https://github.com/howie960018/Kimono2.0.0/blob/interfacefixed/assets/%E5%82%982.png?raw=true",
          "description": "藍櫻和傘具有櫻花形狀的傘面，其優雅的冷色調適合在冰雪紛飛的冬季綻放",
          "bgc":"#F3EEBF",
          "component1": "櫻形和傘",
@@ -233,7 +233,7 @@
       {
          "title": "古風葉",
          "artist": "和傘",
-         "image": "https://github.com/howie960018/Kimono2.0.0/blob/main/assets/kasa4.png?raw=true",
+         "image": "https://github.com/howie960018/Kimono2.0.0/blob/interfacefixed/assets/%E5%82%983.png?raw=true",
          "description": "絕美的古風和傘配上清新的綠葉，其生氣蓬勃的姿態適合夏天的風景",
          "bgc":"#C6FFE0",
          "component1": "普通和傘",
@@ -243,10 +243,10 @@
       {
          "title": "菊渦",
          "artist": "和傘",
-         "image": "https://github.com/howie960018/Kimono2.0.0/blob/main/assets/kasa3.png?raw=true",
+         "image": "https://github.com/howie960018/Kimono2.0.0/blob/interfacefixed/assets/%E5%82%984.png?raw=true",
          "description": "螺旋狀的菊花漩渦，在四季接可綻放",
          "bgc":"#FFC9A3",
-         "component1": "ˇ普通和傘",
+         "component1": "普通和傘",
          "c1price": 100,
          "price": 100
       }
