@@ -56,9 +56,15 @@ const maxDate=new Date("06/30/2022 9:00 PM");
     return (
         <Box backgroundColor={'#E0FDFF'} flex='1'>
 
-            <Center>
+            {/* <Center>
                 <Text margin={7} fontSize={16}>選擇租借  {route.params.title} 的日期</Text>
-            </Center>
+            </Center> */}
+            {/* 選擇日期 */}
+            <Box marginTop={8} marginLeft={8} style={styles.parctrl}>
+                <Text  fontSize={22}>選擇租借</Text>
+                <Text bold fontSize={22}>{route.params.title}</Text>
+                <Text fontSize={22}>的日期和時間</Text>
+            </Box>
 
             <View style={styles.MainContainer}>
 
@@ -94,23 +100,23 @@ const maxDate=new Date("06/30/2022 9:00 PM");
                
 
                 {!datePicker && (
-                    <View style={{ margin: 10 }}>
+                    <View style={{ marginTop: 60 }}>
                         <Pressable borderRadius={20}
                     backgroundColor={"#34CEC5"}  justifyContent={'center'} alignItems={"center"}  onPress={showDatePicker}>
-                            <Text fontSize={18}>選擇日期</Text>
+                            <Text fontSize={24} color={'white'}>選擇日期</Text>
                         </Pressable>
-                        <Text style={styles.text}>Date = {date.toDateString()}</Text>
+                        <Text style={styles.text}>Date : {date.toDateString()}</Text>
 
                     </View>
                 )}
 
                 {!timePicker && (
                     <View style={{ margin: 10 }}>
-                         <Pressable borderRadius={20}
+                         <Pressable style={styles.datebtn} borderRadius={20}
                     backgroundColor={"#8CC3F6"}  justifyContent={'center'} alignItems={"center"}  onPress={showTimePicker}  >
-                            <Text fontSize={18}>選擇時間</Text>
+                            <Text fontSize={24} color={'white'}>選擇時間</Text>
                         </Pressable>
-                        <Text style={styles.text}>Time = {time.toLocaleTimeString('en-US')}</Text>
+                        <Text style={styles.text}>Time : {time.toLocaleTimeString('en-US')}</Text>
                     </View>
                     
                 )}
@@ -122,11 +128,11 @@ const maxDate=new Date("06/30/2022 9:00 PM");
 
                 <Pressable
                     onPress={() => navigation.navigate('Payment', route.params)}
-                   borderRadius={20}
+                   borderRadius={30}
                     backgroundColor={"#FFAAAA"}
-                    width={120}
                     justifyContent={'center'} alignItems={"center"}
-                ><Text fontSize={20}>確認</Text></Pressable>
+                    style={styles.confirm}
+                ><Text fontSize={22} color={'white'}>確認</Text></Pressable>
 
 
             </View>
@@ -141,6 +147,11 @@ const styles = StyleSheet.create({
         flex: 1,
 
     },
+    confirm:{
+        marginTop:20,
+        width:200,
+        height:50
+    },
     input: {
         height: 40,
         margin: 12,
@@ -150,7 +161,10 @@ const styles = StyleSheet.create({
         margin: 25,
         fontSize: 18,
     },
-
+    parctrl:{
+        display:"flex",
+        flexDirection:"row"
+    },
 
 
     MainContainer: {
@@ -168,7 +182,10 @@ const styles = StyleSheet.create({
         marginTop: 30,
         textAlign: 'center'
     },
-
+    datebtn:{
+        width:180,
+        height:45
+    },
 
     datePicker: {
         justifyContent: 'center',

@@ -6,7 +6,7 @@ const Card = ({ product, navigation }) => {
     
      <Box>
         <Pressable 
-        width={150} height={200}  marginLeft={3} margin={5}
+        width={150} height={200}  marginLeft={3} margin={5} 
         backgroundColor={product.bgc}
         borderRadius={10}
           onPress={() => navigation.navigate('Detail', product)}

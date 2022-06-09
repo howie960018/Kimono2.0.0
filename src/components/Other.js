@@ -4,8 +4,9 @@ import { Box,Center, HStack, VStack, AspectRatio, Text, Image, Pressable } from 
 const Other = ({ product, navigation }) => {
   return (
     <Center>
-    <Pressable 
-    width={150} height={210}  marginLeft={3} margin={5}
+      <Box>
+      <Pressable 
+    width={150} height={180}  marginLeft={3} margin={5}
     backgroundColor={product.bgc}
     borderRadius={10}
       onPress={() => navigation.navigate('OtherDetail', product)}
@@ -21,6 +22,7 @@ const Other = ({ product, navigation }) => {
         />            
       </AspectRatio>
     </Pressable>
+      </Box>
     </Center>
   )};
 

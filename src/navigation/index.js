@@ -181,7 +181,8 @@ function MyTab() {
           headerStyle: {
             backgroundColor: '#FFAAAA'
           },
-          title: '我的最愛' 
+          title: '我的最愛' ,
+          headerTintColor: 'white'
 
         }}
       />
@@ -202,8 +203,8 @@ function SettingStack({ navigation }) {
           headerStyle: {
             backgroundColor: '#FFAAAA'
           },
-           title: '個人設定' 
-
+           title: '個人設定',
+           headerTintColor: 'white'
 
         }} name='個人設定' component={SettingsScreen} />
       

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, Button, StyleSheet, StatusBar, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Box, Image } from 'native-base';
+import LottieView from "lottie-react-native";
 
 function ThankScreen({ navigation }) {
 
@@ -10,7 +11,15 @@ function ThankScreen({ navigation }) {
             <Box style={styles.container}
                  _dark={{ bg: "#6C6C6C" }}
                 _light={{ bg: "#E0FDFF" }}>
-                <Image style={styles.imagestyle} source={require('../../assets/foxlogo.png')} alt='rg' />
+                
+                {/* 狐狸端坐動畫 */}
+            <Box h={330} w={330}>
+                <LottieView
+                    source={require("../lottie/sitfox.json")}
+                    autoPlay
+                />
+            </Box>
+
                 <Box>   
                     <Text style={styles.text} >預約成功 謝謝您使用本公司服務!</Text>
                 </Box>
@@ -64,16 +73,15 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         color: "#fff",
-        marginLeft: 140,
-        marginTop: 10
     },
     start: {
         fontSize: 16,
-        width: 311,
-        height: 47,
+        width: 180,
+        height: 50,
         backgroundColor: '#FFAAAA',
-        borderRadius: 30
-
+        borderRadius: 30,
+        alignItems:"center",
+        justifyContent:"center"
     },
     foxstyle: {
         width: 112,
